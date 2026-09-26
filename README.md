@@ -1,6 +1,6 @@
 # Days Remaining App
 
-Current release: `Days_Remaining_Rev1.1_2026-09-25.html`
+Current release: `Days_Remaining_Rev1.2_2026-09-26.html`
 
 ## What it does
 
@@ -19,8 +19,9 @@ Features:
 - Download exact JSON backups for restoration.
 - Import JSON backups, Days Remaining CSV exports, or Compass Batch Checker CSV results.
 - Import only `DR` rows from a Tampermonkey result and ignore all other statuses.
-- Merge by saved ID, normalized company domain, Compass URL, or company name to avoid duplicates.
+- Merge new Tampermonkey results by normalized company domain, Compass URL, or company name to avoid duplicate prospect entries.
 - Preview add/update/skip counts before an import changes browser storage.
+- Preserve repeated domains and repeated rows when restoring a full Days Remaining CSV or JSON backup.
 
 ## How to use it
 
@@ -45,5 +46,6 @@ and so on. A major redesign will move to Rev2.0 only when deliberately approved.
 
 ## Release history
 
+- **Rev1.2 — 2026-09-26:** Preserves the exact row count and repeated-domain records when restoring full Days Remaining CSV or JSON data, while retaining domain-based merging for new Tampermonkey DR results.
 - **Rev1.1 — 2026-09-25:** Connects the visible JSON backup function, adds CSV import and safe merge behavior, filters Tampermonkey imports to DR accounts, and previews changes before saving.
 - **Rev1.0 — 2026-05-27:** Original standalone countdown tracker. Preserved unchanged for fallback.
