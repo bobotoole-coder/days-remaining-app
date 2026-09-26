@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Days Remaining Rev1.3</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f8f7f4;
+  --surface: #ffffff;
+  --border: rgba(0,0,0,0.1);
+  --border-md: rgba(0,0,0,0.18);
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b6b6b;
+  --text-tertiary: #aaa;
+  --text-info: #185fa5;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --danger: #E24B4A;
+  --amber: #BA7517;
+  --green: #3B6D11;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.container { max-width: 760px; margin: 0 auto; }
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  font-family: Georgia, serif;
+}
+
+.version-tag {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-info);
+  border: 0.5px solid var(--text-info);
+  border-radius: 20px;
+  padding: 2px 7px;
+  vertical-align: middle;
+  letter-spacing: 0;
+}
+
+.top-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.add-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border-md);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.form-row-bottom { display: grid; grid-template-columns: 1fr 80px; gap: 10px; margin-bottom: 12px; }
+
+label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 7px 10px;
+  border: 0.5px solid var(--border-md);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text-primary);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+input:focus, textarea:focus, select:focus { border-color: #888; }
+
+textarea { resize: vertical; min-height: 56px; }
+
+.btn {
+  background: var(--surface);
+  border: 0.5px solid var(--border-md);
+  border-radius: var(--radius-md);
+  padding: 7px 14px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.1s;
+  white-space: nowrap;
+}
+
+.btn:hover { background: #eeede9; }
+.btn.export { color: var(--green); border-color: var(--green); }
+.btn.import-btn { color: var(--text-info); border-color: var(--text-info); }
+
+.sort-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.sort-bar label { text-transform: none; font-size: 12px; letter-spacing: 0; margin: 0; white-space: nowrap; }
+.sort-bar select { width: auto; font-size: 13px; }
+
+.account-row {
+  background: var(--surface);
+  border: 0.5px solid var(--border-md);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  margin-bottom: 10px;
+}
+
+.row-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.row-left { flex: 1; min-width: 0; }
+
+.company-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  font-family: Georgia, serif;
+}
+
+.row-meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 3px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.compass-link {
+  font-size: 12px;
+  color: var(--text-info);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.compass-link:hover { text-decoration: underline; }
+
+.rep-tag {
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--bg);
+  border: 0.5px solid var(--border-md);
+  border-radius: 20px;
+  padding: 1px 8px;
+  display: inline-block;
+}
+
+.notes-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  border-top: 0.5px solid var(--border);
+  padding-top: 8px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.row-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.days-badge {
+  font-size: 28px;
+  font-weight: 400;
+  text-align: right;
+  line-height: 1;
+  font-family: Georgia, serif;
+}
+
+.days-sub {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  text-align: right;
+}
+
+.row-actions { display: flex; gap: 5px; margin-top: 2px; }
+
+.btn-sm {
+  background: transparent;
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 4px 9px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: inherit;
+  transition: background 0.1s;
+}
+
+.btn-sm:hover { background: #eeede9; color: var(--text-primary); }
+.btn-sm.danger:hover { color: var(--danger); border-color: var(--danger); }
+
+.edit-panel {
+  margin-top: 12px;
+  border-top: 0.5px solid var(--border);
+  padding-top: 12px;
+  display: none;
+}
+
+.edit-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.edit-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.edit-row-bottom { display: grid; grid-template-columns: 1fr 80px; gap: 10px; margin-bottom: 10px; }
+
+.edit-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.edit-meta { font-size: 12px; color: var(--text-tertiary); }
+
+.urgency-critical { color: var(--danger); }
+.urgency-soon { color: var(--amber); }
+.urgency-ok { color: var(--text-primary); }
+
+.empty {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  text-align: center;
+  padding: 3rem;
+}
+
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  text-align: center;
+}
+
+.stat-num { font-size: 22px; font-family: Georgia, serif; font-weight: 400; }
+.stat-label { font-size: 11px; color: var(--text-secondary); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+@media (max-width: 540px) {
+  .form-row, .form-row-3, .form-row-bottom, .edit-row, .edit-row-3, .edit-row-bottom { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="top-bar">
+    <h1>Days Remaining <span class="version-tag">Rev1.3</span></h1>
+    <div class="top-actions">
+      <button class="btn import-btn" onclick="document.getElementById('import-input').click()">
+        <i class="ti ti-upload"></i> Import CSV / JSON
+      </button>
+      <button class="btn import-btn" onclick="exportJSON()">
+        <i class="ti ti-database-export"></i> Backup JSON
+      </button>
+      <button class="btn export" onclick="exportCSV()">
+        <i class="ti ti-download"></i> Export CSV
+      </button>
+    </div>
+  </div>
+
+  <input type="file" id="import-input" accept=".json,.csv,application/json,text/csv" style="display:none" onchange="importBackup(event)">
+
+  <div class="stats-bar" id="stats-bar"></div>
+
+  <div class="add-card">
+    <div class="form-row">
+      <div><label>Company Name</label><input type="text" id="inp-name" placeholder="Acme Corp"></div>
+      <div><label>Company URL</label><input type="text" id="inp-url" placeholder="acmecorp.com"></div>
+    </div>
+    <div class="form-row-3">
+      <div><label>Compass URL</label><input type="text" id="inp-compass" placeholder="compass.cogentco.com/..."></div>
+      <div><label>Rep</label><input type="text" id="inp-rep" placeholder="Rep name"></div>
+      <div><label>Days Remaining</label><input type="number" id="inp-days" min="0" max="120" placeholder="30"></div>
+    </div>
+    <div style="margin-bottom:12px">
+      <label>Notes</label>
+      <textarea id="inp-notes" placeholder="Optional notes..."></textarea>
+    </div>
+    <button class="btn" onclick="addEntry()"><i class="ti ti-plus"></i> Add Account</button>
+  </div>
+
+  <div class="sort-bar">
+    <label style="color:var(--text-secondary)">Sort by:</label>
+    <select id="sort-select" onchange="renderList()">
+      <option value="days-asc">Days remaining (fewest first)</option>
+      <option value="days-desc">Days remaining (most first)</option>
+      <option value="name">Company name</option>
+      <option value="rep">Rep name</option>
+      <option value="added">Date added</option>
+    </select>
+  </div>
+
+  <div id="list"></div>
+
+</div>
+
+<script>
+const KEY = 'days_remaining_v2';
+
+function load() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch { return []; }
+}
+
+function save(data) {
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e) { alert('Storage error: ' + e.message); }
+}
+
+function daysLeft(entry) {
+  const now = new Date();
+  const added = new Date(entry.addedAt);
+  // Compare calendar dates only — not timestamps — so it ticks at midnight
+  const addedDay = new Date(added.getFullYear(), added.getMonth(), added.getDate());
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const elapsed = Math.round((today - addedDay) / 86400000);
+  return Math.max(0, entry.originalDays - elapsed);
+}
+
+function esc(str) {
+  return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function todayStr() {
+  return new Date().toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+}
+
+function addEntry() {
+  const name    = document.getElementById('inp-name').value.trim();
+  const url     = document.getElementById('inp-url').value.trim();
+  const compass = document.getElementById('inp-compass').value.trim();
+  const rep     = document.getElementById('inp-rep').value.trim();
+  const notes   = document.getElementById('inp-notes').value.trim();
+  const days    = parseInt(document.getElementById('inp-days').value);
+
+  if (!name) { alert('Company name is required.'); return; }
+  if (isNaN(days) || days < 0) { alert('Please enter a valid number of days.'); return; }
+
+  const data = load();
+  const duplicateIndex = entryMatchIndex(data, { id: null, name, url, compass });
+  if (duplicateIndex !== -1) {
+    alert('Duplicate blocked: this account already matches "' + data[duplicateIndex].name + '". Edit the existing account instead.');
+    return;
+  }
+  // Store today at midnight so daysLeft math is always calendar-day based
+  const now = new Date();
+  const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+
+  data.push({
+    id: Date.now(),
+    name, url, compass, rep, notes,
+    originalDays: days,
+    addedAt: midnight
+  });
+
+  save(data);
+  ['inp-name','inp-url','inp-compass','inp-rep','inp-notes','inp-days'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  renderList();
+}
+
+function deleteEntry(id) {
+  if (!confirm('Remove this account?')) return;
+  save(load().filter(e => e.id !== id));
+  renderList();
+}
+
+function toggleEdit(id) {
+  const panel = document.getElementById('edit-' + id);
+  panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+}
+
+function saveEdit(id) {
+  const data = load();
+  const idx = data.findIndex(e => e.id === id);
+  if (idx === -1) return;
+
+  const name    = document.getElementById('e-name-' + id).value.trim();
+  const url     = document.getElementById('e-url-' + id).value.trim();
+  const compass = document.getElementById('e-compass-' + id).value.trim();
+  const rep     = document.getElementById('e-rep-' + id).value.trim();
+  const notes   = document.getElementById('e-notes-' + id).value.trim();
+  const newLeft = parseInt(document.getElementById('e-days-' + id).value);
+
+  if (!name) { alert('Company name is required.'); return; }
+  if (isNaN(newLeft) || newLeft < 0) { alert('Please enter a valid number of days.'); return; }
+
+  const otherEntries = data.filter((entry, entryIndex) => entryIndex !== idx);
+  const duplicateIndex = entryMatchIndex(otherEntries, { id: null, name, url, compass });
+  if (duplicateIndex !== -1) {
+    alert('Duplicate blocked: these changes would match "' + otherEntries[duplicateIndex].name + '".');
+    return;
+  }
+
+  // Recalculate: treat today as day 0 and set originalDays = newLeft
+  const now = new Date();
+  const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+
+  data[idx] = {
+    ...data[idx],
+    name, url, compass, rep, notes,
+    originalDays: newLeft,
+    addedAt: midnight
+  };
+
+  save(data);
+  renderList();
+}
+
+function exportCSV() {
+  const data = load();
+  if (data.length === 0) { alert('Nothing to export yet.'); return; }
+
+  const headers = ['Company Name','Company URL','Compass URL','Rep','Days Remaining','Original Days','Date Added','Notes'];
+  const rows = data.map(e => {
+    const left = daysLeft(e);
+    const added = new Date(e.addedAt).toLocaleDateString('en-US');
+    return [
+      e.name, e.url||'', e.compass||'', e.rep||'',
+      left, e.originalDays,
+      added,
+      (e.notes||'').replace(/\n/g,' ')
+    ].map(v => `"${String(v).replace(/"/g,'""')}"`).join(',');
+  });
+
+  const csv = [headers.join(','), ...rows].join('\r\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `days-remaining-backup-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+function exportJSON() {
+  const data = load();
+  if (data.length === 0) { alert('Nothing to back up yet.'); return; }
+  const blob = new Blob([JSON.stringify({ exportDate: new Date().toISOString(), entries: data }, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `days-remaining-backup-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+}
+
+function midnightToday() {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+}
+
+function normalizeDomain(value) {
+  return String(value || '')
+    .trim()
+    .toLowerCase()
+    .replace(/^https?:\/\//, '')
+    .replace(/^www\./, '')
+    .split(/[/?#]/)[0]
+    .replace(/\.$/, '');
+}
+
+function normalizeHeader(value) {
+  return String(value || '').trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function parseCSV(text) {
+  const rows = [];
+  let row = [];
+  let field = '';
+  let quoted = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    if (char === '"') {
+      if (quoted && text[i + 1] === '"') {
+        field += '"';
+        i++;
+      } else {
+        quoted = !quoted;
+      }
+    } else if (char === ',' && !quoted) {
+      row.push(field);
+      field = '';
+    } else if ((char === '\n' || char === '\r') && !quoted) {
+      if (char === '\r' && text[i + 1] === '\n') i++;
+      row.push(field);
+      if (row.some(value => String(value).trim() !== '')) rows.push(row);
+      row = [];
+      field = '';
+    } else {
+      field += char;
+    }
+  }
+
+  row.push(field);
+  if (row.some(value => String(value).trim() !== '')) rows.push(row);
+  return rows;
+}
+
+function entriesFromCSV(text) {
+  const rows = parseCSV(text);
+  if (rows.length < 2) throw new Error('The CSV has no account rows.');
+
+  const headers = rows[0].map(normalizeHeader);
+  const column = aliases => {
+    for (const alias of aliases) {
+      const index = headers.indexOf(alias);
+      if (index !== -1) return index;
+    }
+    return -1;
+  };
+
+  const columns = {
+    name: column(['companyname', 'name']),
+    url: column(['companyurl', 'url', 'website', 'domain']),
+    compass: column(['compassurl', 'compass']),
+    rep: column(['rep', 'representative', 'owner']),
+    days: column(['daysremaining', 'daysleft']),
+    originalDays: column(['originaldays']),
+    dateAdded: column(['dateadded', 'addeddate']),
+    notes: column(['notes', 'note']),
+    status: column(['status', 'designation'])
+  };
+
+  if (columns.name === -1) throw new Error('The CSV is missing a Company Name column.');
+
+  const get = (row, index) => index === -1 ? '' : String(row[index] || '').trim();
+  const entries = [];
+  let nonDr = 0;
+  let invalid = 0;
+  const isTampermonkey = columns.status !== -1;
+
+  rows.slice(1).forEach(row => {
+    const status = get(row, columns.status);
+    if (isTampermonkey && status.toUpperCase() !== 'DR') {
+      nonDr++;
+      return;
+    }
+
+    const name = get(row, columns.name);
+    const days = parseInt(get(row, columns.days), 10);
+    if (!name || !Number.isFinite(days) || days < 0) {
+      invalid++;
+      return;
+    }
+
+    let originalDays = parseInt(get(row, columns.originalDays), 10);
+    if (!Number.isFinite(originalDays) || originalDays < 0) originalDays = days;
+
+    let addedAt = midnightToday();
+    const dateText = get(row, columns.dateAdded);
+    if (!isTampermonkey && dateText) {
+      const parsedDate = new Date(dateText);
+      if (!Number.isNaN(parsedDate.getTime())) {
+        addedAt = new Date(parsedDate.getFullYear(), parsedDate.getMonth(), parsedDate.getDate()).getTime();
+      }
+    }
+
+    entries.push({
+      id: null,
+      name,
+      url: get(row, columns.url),
+      compass: get(row, columns.compass),
+      rep: get(row, columns.rep),
+      notes: get(row, columns.notes),
+      originalDays: isTampermonkey ? days : originalDays,
+      addedAt: isTampermonkey ? midnightToday() : addedAt,
+      importKind: isTampermonkey ? 'tampermonkey-csv' : 'days-csv'
+    });
+  });
+
+  return { entries, nonDr, invalid, kind: isTampermonkey ? 'Tampermonkey CSV' : 'Days Remaining CSV' };
+}
+
+function entryMatchIndex(data, incoming) {
+  if (incoming.id !== null && incoming.id !== undefined) {
+    const byId = data.findIndex(entry => entry.id === incoming.id);
+    if (byId !== -1) return byId;
+  }
+
+  const domain = normalizeDomain(incoming.url);
+  if (domain) {
+    const byDomain = data.findIndex(entry => normalizeDomain(entry.url) === domain);
+    if (byDomain !== -1) return byDomain;
+  }
+
+  const compass = String(incoming.compass || '').trim().toLowerCase().replace(/\/$/, '');
+  if (compass) {
+    const byCompass = data.findIndex(entry => String(entry.compass || '').trim().toLowerCase().replace(/\/$/, '') === compass);
+    if (byCompass !== -1) return byCompass;
+  }
+
+  const name = String(incoming.name || '').trim().toLowerCase();
+  return name ? data.findIndex(entry => String(entry.name || '').trim().toLowerCase() === name) : -1;
+}
+
+function normalizeImportedEntry(raw) {
+  return {
+    id: raw.id === undefined ? null : raw.id,
+    name: String(raw.name || '').trim(),
+    url: String(raw.url || '').trim(),
+    compass: String(raw.compass || '').trim(),
+    rep: String(raw.rep || '').trim(),
+    notes: String(raw.notes || '').trim(),
+    originalDays: Number(raw.originalDays),
+    addedAt: Number(raw.addedAt)
+  };
+}
+
+function isValidImportedEntry(entry) {
+  return Boolean(entry.name) &&
+    Number.isFinite(entry.originalDays) && entry.originalDays >= 0 &&
+    Number.isFinite(entry.addedAt);
+}
+
+function mergeEntries(existing, incoming, kind) {
+  const merged = existing.map(entry => ({ ...entry }));
+  let nextId = Math.max(Date.now(), ...merged.map(entry => Number(entry.id) || 0)) + 1;
+  let added = 0;
+  let updated = 0;
+  let skipped = 0;
+
+  incoming.forEach(raw => {
+    const entry = normalizeImportedEntry(raw);
+
+    if (!isValidImportedEntry(entry)) {
+      skipped++;
+      return;
+    }
+
+    const index = entryMatchIndex(merged, entry);
+    if (index === -1) {
+      if (entry.id === null || merged.some(current => current.id === entry.id)) entry.id = nextId++;
+      merged.push(entry);
+      added++;
+      return;
+    }
+
+    const current = merged[index];
+    const candidate = {
+      ...current,
+      name: entry.name || current.name,
+      url: entry.url || current.url,
+      compass: entry.compass || current.compass,
+      rep: entry.rep || current.rep,
+      notes: entry.notes || current.notes,
+      originalDays: entry.originalDays,
+      addedAt: entry.addedAt
+    };
+
+    if (JSON.stringify(candidate) === JSON.stringify(current)) {
+      skipped++;
+    } else {
+      merged[index] = candidate;
+      updated++;
+    }
+  });
+
+  return { merged, added, updated, skipped };
+}
+
+function importBackup(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const text = e.target.result;
+      const isJSON = file.name.toLowerCase().endsWith('.json') || text.trim().startsWith('{') || text.trim().startsWith('[');
+      let incoming;
+      let nonDr = 0;
+      let invalid = 0;
+      let kind;
+
+      if (isJSON) {
+        const parsed = JSON.parse(text);
+        incoming = parsed.entries || parsed;
+        if (!Array.isArray(incoming)) throw new Error('The JSON backup does not contain an entries array.');
+        kind = 'JSON backup';
+      } else {
+        const parsedCSV = entriesFromCSV(text);
+        incoming = parsedCSV.entries;
+        nonDr = parsedCSV.nonDr;
+        invalid = parsedCSV.invalid;
+        kind = parsedCSV.kind;
+      }
+
+      const result = mergeEntries(load(), incoming, kind);
+      const summary = [
+        `${kind}: ${result.added} to add`,
+        `${result.updated} to update`,
+        `${result.skipped} duplicates/unchanged`
+      ];
+      if (nonDr) summary.push(`${nonDr} non-DR rows ignored`);
+      if (invalid) summary.push(`${invalid} rows missing a valid name or Days Remaining`);
+
+      if (result.added === 0 && result.updated === 0) {
+        alert('No changes to import.\n\n' + summary.join('\n'));
+        return;
+      }
+
+      if (!confirm(summary.join('\n') + '\n\nContinue with import?')) return;
+      save(result.merged);
+      renderList();
+      alert(`Import complete: ${result.added} added, ${result.updated} updated, ${result.skipped} skipped.`);
+    } catch(err) {
+      alert('Error reading file: ' + err.message);
+    }
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+function renderStats(data) {
+  const total = data.length;
+  const critical = data.filter(e => daysLeft(e) <= 7).length;
+  const soon = data.filter(e => { const d = daysLeft(e); return d > 7 && d <= 21; }).length;
+
+  document.getElementById('stats-bar').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-num">${total}</div>
+      <div class="stat-label">Total Accounts</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--amber)">${soon}</div>
+      <div class="stat-label">Due Within 21 Days</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--danger)">${critical}</div>
+      <div class="stat-label">Due Within 7 Days</div>
+    </div>
+  `;
+}
+
+function renderList() {
+  const data = load();
+  renderStats(data);
+
+  const sort = document.getElementById('sort-select').value;
+  const sorted = [...data].sort((a, b) => {
+    if (sort === 'days-asc')  return daysLeft(a) - daysLeft(b);
+    if (sort === 'days-desc') return daysLeft(b) - daysLeft(a);
+    if (sort === 'name')      return a.name.localeCompare(b.name);
+    if (sort === 'rep')       return (a.rep||'').localeCompare(b.rep||'');
+    if (sort === 'added')     return a.addedAt - b.addedAt;
+    return 0;
+  });
+
+  const container = document.getElementById('list');
+  if (sorted.length === 0) {
+    container.innerHTML = '<div class="empty">No accounts yet. Add one above.</div>';
+    return;
+  }
+
+  container.innerHTML = sorted.map(entry => {
+    const left = daysLeft(entry);
+    const cls = left <= 7 ? 'urgency-critical' : left <= 21 ? 'urgency-soon' : 'urgency-ok';
+    const addedDate = new Date(entry.addedAt).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+
+    const compassHtml = entry.compass
+      ? `<a class="compass-link" href="${esc(entry.compass)}" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i> Compass</a>`
+      : '';
+    const repHtml = entry.rep ? `<span class="rep-tag">${esc(entry.rep)}</span>` : '';
+    const urlHtml = entry.url ? `<span>${esc(entry.url)}</span>` : '';
+    const notesHtml = entry.notes ? `<div class="notes-text">${esc(entry.notes)}</div>` : '';
+
+    return `<div class="account-row">
+      <div class="row-top">
+        <div class="row-left">
+          <div class="company-name">${esc(entry.name)}</div>
+          <div class="row-meta">
+            ${urlHtml}
+            ${compassHtml}
+            ${repHtml}
+          </div>
+          ${notesHtml}
+        </div>
+        <div class="row-right">
+          <div class="days-badge ${cls}">${left}</div>
+          <div class="days-sub">days left</div>
+          <div class="row-actions">
+            <button class="btn-sm" onclick="toggleEdit(${entry.id})"><i class="ti ti-edit"></i> Edit</button>
+            <button class="btn-sm danger" onclick="deleteEntry(${entry.id})" title="Delete"><i class="ti ti-trash"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="edit-panel" id="edit-${entry.id}">
+        <div class="edit-row">
+          <div><label>Company Name</label><input type="text" id="e-name-${entry.id}" value="${esc(entry.name)}"></div>
+          <div><label>Company URL</label><input type="text" id="e-url-${entry.id}" value="${esc(entry.url||'')}"></div>
+        </div>
+        <div class="edit-row-3">
+          <div><label>Compass URL</label><input type="text" id="e-compass-${entry.id}" value="${esc(entry.compass||'')}"></div>
+          <div><label>Rep</label><input type="text" id="e-rep-${entry.id}" value="${esc(entry.rep||'')}"></div>
+          <div><label>Days Left</label><input type="number" id="e-days-${entry.id}" min="0" max="120" value="${left}"></div>
+        </div>
+        <div style="margin-bottom:10px">
+          <label>Notes</label>
+          <textarea id="e-notes-${entry.id}">${esc(entry.notes||'')}</textarea>
+        </div>
+        <div class="edit-actions">
+          <button class="btn" onclick="saveEdit(${entry.id})"><i class="ti ti-check"></i> Save</button>
+          <button class="btn-sm" onclick="toggleEdit(${entry.id})">Cancel</button>
+          <span class="edit-meta">Added ${addedDate} &middot; Original: ${entry.originalDays} days</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+renderList();
+</script>
+</body>
+</html>
