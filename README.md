@@ -1,14 +1,22 @@
 # Pick Up App (formerly Days Remaining)
 
-Current release: [Rev2 — Pick Up App](Pick_Up_Rev2_2026-10-21.html)
+Current release: [Rev2.1 — Pick Up App](Pick_Up_Rev2.1_2026-10-21.html)
 
-[Download Pick Up Rev2](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2/Pick_Up_Rev2_2026-10-21.html)
+[Download Pick Up Rev2.1](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.1/Pick_Up_Rev2.1_2026-10-21.html)
 
-## Rev2 workflow
+## Rev2.1 historical-request fixes
+
+For an already-sent request still in active lists, choose **Record an earlier request** on its card. Save the original date only if known (otherwise leave blank), then resolve it in Requested. No date is guessed. Unknown historical dates are not counted as new submissions today.
+
+Positive replacement days now clear Open/unassigned mode, so saved rep/countdown updates are visible.
+
+[Rev2.1 usage and verification](docs/Pick_Up_Rev2.1_Release_Notes.md) · [Rev2 fallback](Pick_Up_Rev2_2026-10-21.html)
+
+## Preserved Rev2 workflow
 
 Ready & Upcoming → save DR evaluation → select 1–3 available accounts → Generate request → send separately → Mark submitted → resolve in Requested. History retains outcomes and repeated attempts.
 
-Blank replacement-countdown input preserves the existing countdown. Enter replacement days only to restart it. Save edits and form headers explicitly.
+Blank replacement-countdown input preserves the existing countdown. Enter replacement days only to restart it. Positive replacement days select DR rather than Open/unassigned. Save edits and form headers explicitly.
 
 **Upgrade:** make a fresh Rev1 JSON backup, import it into Rev2, check your count/header, then make a Rev2 backup. Keep Rev1 and its backup as fallback. Continue using the same Rev2 file/path and browser profile. No automatic Magellan writes.
 
@@ -76,6 +84,8 @@ account records or other private business data.
 Every released version is preserved. Rev2 is the explicitly requested workflow upgrade; old versions remain separate immutable fallback files.
 
 ## Release history
+
+- **Pick Up Rev2.1 — 2026-10-21:** Record/resolve historical requests without guessed dates; distinguish owned-account History; clear stale Open mode when positive replacement days are saved. Rev2 preserved.
 
 - **Pick Up Rev2 — 2026-10-21:** Three working tabs, explicit submission/resolution lifecycle, follow-up and History/analytics, explicit countdown replacement and persistence fixes, exact backups, portable prompt/glossary update. Rev1 preserved.
 

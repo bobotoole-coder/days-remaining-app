@@ -1,6 +1,6 @@
 const {chromium}=require('playwright');
 const fs=require('fs'),path=require('path'),assert=require('assert/strict'),os=require('os');
-const ROOT=path.resolve(__dirname,'..'),APP=path.join(ROOT,'Pick_Up_Rev2_2026-10-21.html');
+const ROOT=path.resolve(__dirname,'..'),APP=path.join(ROOT,process.env.APP_FILENAME||'Pick_Up_Rev2_2026-10-21.html');
 const OUT=process.env.TEST_OUTPUT||fs.mkdtempSync(path.join(os.tmpdir(),'pickup-rev2-results-'));
 const real=process.env.CURRENT_BACKUP?JSON.parse(fs.readFileSync(process.env.CURRENT_BACKUP)):null;
 const example=(id,days=0,score=8)=>({id,name:'Example '+id,url:'example'+id+'.test',compass:'https://example.test/company/'+id,rep:'Example rep',notes:'Private note — multiline\nkept',ownership:days?'dr':'open',originalDays:days,addedAt:new Date().setHours(0,0,0,0),pickupScore:score,evaluation:'pickup',hqLocation:'United States',naCityState:'New York, NY',locationCount:'12',onNetCount:'2',addressableSpend:'12345.67'});
