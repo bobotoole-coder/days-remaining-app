@@ -1,12 +1,22 @@
 # Pick Up App (formerly Days Remaining)
 
-Current release: [Rev1 — Pick Up App](Pick_Up_Rev1_2026-10-14.html)
+Current release: [Rev2 — Pick Up App](Pick_Up_Rev2_2026-10-21.html)
 
-[Download Pick Up Rev1](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev1/Pick_Up_Rev1_2026-10-14.html)
+[Download Pick Up Rev2](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2/Pick_Up_Rev2_2026-10-21.html)
+
+## Rev2 workflow
+
+Ready & Upcoming → save DR evaluation → select 1–3 available accounts → Generate request → send separately → Mark submitted → resolve in Requested. History retains outcomes and repeated attempts.
+
+Blank replacement-countdown input preserves the existing countdown. Enter replacement days only to restart it. Save edits and form headers explicitly.
+
+**Upgrade:** make a fresh Rev1 JSON backup, import it into Rev2, check your count/header, then make a Rev2 backup. Keep Rev1 and its backup as fallback. Continue using the same Rev2 file/path and browser profile. No automatic Magellan writes.
+
+[Rev2 release notes, usage and verification](docs/Pick_Up_Rev2_Release_Notes.md) · [Rev1 fallback](Pick_Up_Rev1_2026-10-14.html)
 
 Standalone HTML, including offline Excel export. Download and open in your browser.
 
-## Pick Up Rev1 additions
+## Preserved Rev1 additions
 
 - Open/unassigned accounts at the top with zero waiting days; existing DR countdowns retained.
 - Editable 1–10 Pick Up Score and score sorting; no automatic formula.
@@ -15,7 +25,7 @@ Standalone HTML, including offline Excel export. Download and open in your brows
 - Select up to three accounts and export the supplied October 13 Excel form,
   preserving its layout without extra fields or sheets.
 - Saved manager/rep headers and manually editable current account count.
-- Export does not submit, assign or remove accounts. No DR/RD skill changes.
+- Export does not submit, assign or remove accounts. Original Rev1 made no DR/RD skill changes.
 
 **Moving from Days Remaining:** keep the old HTML and make a JSON backup in it.
 Open Pick Up Rev1 and use **Import CSV / JSON** to import that backup. Keep using
@@ -63,10 +73,11 @@ account records or other private business data.
 
 ## Versioning
 
-Every released version is preserved. Normal changes will create Rev1.1, Rev1.2,
-and so on. A major redesign will move to Rev2.0 only when deliberately approved.
+Every released version is preserved. Rev2 is the explicitly requested workflow upgrade; old versions remain separate immutable fallback files.
 
 ## Release history
+
+- **Pick Up Rev2 — 2026-10-21:** Three working tabs, explicit submission/resolution lifecycle, follow-up and History/analytics, explicit countdown replacement and persistence fixes, exact backups, portable prompt/glossary update. Rev1 preserved.
 
 - **Pick Up Rev1 — 2026-10-14:** Backward-compatible successor to Days Remaining Rev1.3. Adds manually scored open-account selection and exact-template Excel pickup forms. Prior releases unchanged.
 
