@@ -1,6 +1,21 @@
 # Pick Up App (formerly Days Remaining)
 
-Current release: [Rev2.1 — Pick Up App](Pick_Up_Rev2.1_2026-10-21.html)
+Current release: [Rev2.2 — Pick Up App](Pick_Up_Rev2.2_2026-10-23.html)
+
+[Download Pick Up Rev2.2](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.2/Pick_Up_Rev2.2_2026-10-23.html)
+
+## Rev2.2 — clear readiness and compact accounts
+
+- Ready/available total first, with evaluated and not-evaluated counts; coming soon counts only days 1–7. Upcoming 1–21 excludes already-ready records. All availability counts exclude submitted/history records.
+- Full-data tab counts; All Accounts explicitly labels active records. History includes previous attempts and can overlap other tabs. Search and filters narrow lists, not summary totals.
+- One evaluation: score, recommendation and required site/spend/form fields. A saved PASS counts as evaluated, never selectable. Missing form fields are labeled incomplete, not ready to request. Estimates remain distinguished in notes; zero is never filled automatically.
+- Large black-outline selection boxes, large scores, sticky submission toolbar, collapsible notes and request administration; Expand/Collapse all. Warnings and identity links remain visible.
+- No account data changes, timer resets, automatic submissions, or database writes. Preserve older releases.
+
+**Upgrade from Rev2.1:** back up your current data; open Rev2.2 and import the latest JSON; verify the count and form header. Keep the older app and backup. Use the same new file/path and browser profile afterward. JSON is the exact recovery format; CSV remains an interchange format with exact-record payloads.
+
+[Rev2.2 release notes](docs/Pick_Up_Rev2.2_Release_Notes.md)
+
 
 [Download Pick Up Rev2.1](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.1/Pick_Up_Rev2.1_2026-10-21.html)
 
