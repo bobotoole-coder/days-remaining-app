@@ -1,6 +1,17 @@
 # Pick Up App (formerly Days Remaining)
 
-Current release: [Rev2.2 — Pick Up App](Pick_Up_Rev2.2_2026-10-23.html)
+Current release: [Rev2.3 — Pick Up App](Pick_Up_Rev2.3_2026-10-25.html)
+
+[Download Pick Up Rev2.3](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.3/Pick_Up_Rev2.3_2026-10-25.html)
+
+## Rev2.3 — explicit evaluation classifications
+
+- Replaces ambiguous evaluated PASS with **Evaluated: YES — REJECT**.
+- Completed positive recommendations explicitly show **PICK UP**, followed by readiness or countdown information. Incomplete evaluations retain their existing status.
+- Label-only change; no classification values, account fields, timers, request history, selection rules, or database records changed.
+- Upgrade: make a fresh Backup JSON in your current app, open Rev2.3, import that backup and verify the count/header. Keep Rev2.2 and its backup. Use the same new file/path and browser profile afterward. JSON is the exact recovery format; CSV is interchange.
+
+[Rev2.3 release notes](docs/Pick_Up_Rev2.3_Release_Notes.md)
 
 [Download Pick Up Rev2.2](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.2/Pick_Up_Rev2.2_2026-10-23.html)
 
@@ -8,7 +19,7 @@ Current release: [Rev2.2 — Pick Up App](Pick_Up_Rev2.2_2026-10-23.html)
 
 - Ready/available total first, with evaluated and not-evaluated counts; coming soon counts only days 1–7. Upcoming 1–21 excludes already-ready records. All availability counts exclude submitted/history records.
 - Full-data tab counts; All Accounts explicitly labels active records. History includes previous attempts and can overlap other tabs. Search and filters narrow lists, not summary totals.
-- One evaluation: score, recommendation and required site/spend/form fields. A saved PASS counts as evaluated, never selectable. Missing form fields are labeled incomplete, not ready to request. Estimates remain distinguished in notes; zero is never filled automatically.
+- One evaluation: score, recommendation and required site/spend/form fields. A saved REJECT recommendation counts as evaluated (displayed as PASS in Rev2.2), never selectable. Missing form fields are labeled incomplete, not ready to request. Estimates remain distinguished in notes; zero is never filled automatically.
 - Large black-outline selection boxes, large scores, sticky submission toolbar, collapsible notes and request administration; Expand/Collapse all. Warnings and identity links remain visible.
 - No account data changes, timer resets, automatic submissions, or database writes. Preserve older releases.
 
