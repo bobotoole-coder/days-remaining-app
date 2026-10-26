@@ -1,6 +1,20 @@
 # Pick Up App (formerly Days Remaining)
 
-Current release: [Rev2.3 — Pick Up App](Pick_Up_Rev2.3_2026-10-25.html)
+Current release: [Rev2.4 — Pick Up App](Pick_Up_Rev2.4_2026-10-26.html)
+
+[Download Pick Up Rev2.4](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.4/Pick_Up_Rev2.4_2026-10-26.html)
+
+## Rev2.4 — verified completed-account cleanup
+
+Keep unresolved accounts in the working app. Once assignment to Bob or a final rejection is confirmed, save the complete record and evidence in Supabase, independently read it back, and import the resulting cleanup JSON. Full account records then leave the app; compact identity, verification and request-outcome summaries retain analytics and block accidental restoration from older imports.
+
+**This is a supervised handoff, not an automatic database connection.** Click **Prepare Supabase cleanup** to download a fresh backup and send it to Spock. A REJECT recommendation alone, Archive alone, or an awaiting request is not authorization to delete the record. Nothing is removed merely by upgrading.
+
+Rev2.4 uses separate browser storage and leaves earlier versions' storage untouched. Download a fresh Backup JSON in the current app, open Rev2.4, import that backup, and check the count/header. Keep the prior app and backup. JSON is the exact recovery format, including cleanup summaries; CSV is interchange and cannot restore the full cleanup ledger. Do not use an older app with a cleaned Rev2.4 backup: the old app cannot preserve its analytics ledger.
+
+[Rev2.4 release notes and checks](docs/Pick_Up_Rev2.4_Release_Notes.md)
+
+Previous release: [Rev2.3 — Pick Up App](Pick_Up_Rev2.3_2026-10-25.html)
 
 [Download Pick Up Rev2.3](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.3/Pick_Up_Rev2.3_2026-10-25.html)
 
