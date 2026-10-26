@@ -1,6 +1,18 @@
 # Pick Up App (formerly Days Remaining)
 
-Current release: [Rev2.4 — Pick Up App](Pick_Up_Rev2.4_2026-10-26.html)
+Current release: [Rev2.5 — Pick Up App](Pick_Up_Rev2.5_2026-10-26.html)
+
+[Download Pick Up Rev2.5](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.5/Pick_Up_Rev2.5_2026-10-26.html)
+
+## Rev2.5 — straightforward request outcomes
+
+Choose **Update request outcome** inside the account details. **Assigned to another rep** shows only **New rep**, **Days Remaining** and **Notes (optional)**. Save restarts the normal countdown from today; the account returns to active lists and the usual 21-day, 7-day and current views as it comes due. Blank notes record “Assigned to another rep.” automatically. A follow-up date appears only for **Still unassigned / needs follow-up**; its notes are optional too. Other outcomes retain their existing behavior.
+
+No schema, import, cleanup-ledger, score or submission-history change. Rev2.5 uses the same compatible storage keys/format as Rev2.4, not a new database. Before upgrading, download a **fresh Backup JSON** from your running app, open Rev2.5, import that backup and check the account total/header. Different local paths/browser profiles may not share storage; JSON backup/import is the reliable transfer. Keep Rev2.4 and the fresh backup as fallback. Continue using the same new file/path and browser profile. JSON is exact recovery; CSV is interchange.
+
+[Rev2.5 release notes and checks](docs/Pick_Up_Rev2.5_Release_Notes.md)
+
+Previous release: Rev2.4, preserved below.
 
 [Download Pick Up Rev2.4](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.4/Pick_Up_Rev2.4_2026-10-26.html)
 
