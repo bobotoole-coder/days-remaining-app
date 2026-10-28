@@ -1,6 +1,18 @@
 # Pick Up App (formerly Days Remaining)
 
-Current release: [Rev2.5 — Pick Up App](Pick_Up_Rev2.5_2026-10-26.html)
+Current release: [Rev2.6 — Pick Up App](Pick_Up_Rev2.6_2026-10-28.html)
+
+[Download Pick Up Rev2.6](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.6/Pick_Up_Rev2.6_2026-10-28.html)
+
+## Rev2.6 — denied requests and personal revisit timers
+
+Choose **Request denied — set revisit timer** in the now-visible **Update request outcome** controls. Enter the denial reason and your own calendar-day timer. **Denied / Revisit** keeps these accounts separate from Available now. On expiry, they appear under **Revisit due — previously denied**, never automatically selectable or confirmed available. Check Compass and review timing with Alex before explicitly returning one to active. Prior denial evidence and every request attempt remain preserved; request denial is not account rejection.
+
+Before upgrading, download a fresh Backup JSON from your running app. Open Rev2.6, import that backup, verify the account count/header, and make a new backup. Continue using the same new path/browser profile. Keep Rev2.5 and your pre-upgrade JSON as fallback. Use Rev2.6 for new denial backups; older apps cannot operate the new states. JSON is exact recovery; CSV is interchange. No account changes occur merely by upgrading.
+
+[Rev2.6 release notes and verification](docs/Pick_Up_Rev2.6_Release_Notes.md)
+
+Previous releases preserved below.
 
 [Download Pick Up Rev2.5](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.5/Pick_Up_Rev2.5_2026-10-26.html)
 
