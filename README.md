@@ -1,6 +1,22 @@
 # Pick Up App (formerly Days Remaining)
 
-Current release: [Rev2.6 — Pick Up App](Pick_Up_Rev2.6_2026-10-28.html)
+Current release: [Rev2.7 — Pick Up App](Pick_Up_Rev2.7_2026-10-29.html)
+
+[Download Pick Up Rev2.7](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.7/Pick_Up_Rev2.7_2026-10-29.html)
+
+## Rev2.7 — 1–100 ranking scores
+
+Pick Up Scores now accept whole numbers **1–100**, with blank allowed. Use finer assessments such as 43 versus 48. Legacy 1–10 scores convert once (4 → 40, 5 → 50); conversion does not invent new distinctions or re-evaluate accounts. Score sorting puts blanks last in either direction. There is no automated scoring formula.
+
+**Upgrade:** download a fresh Backup JSON in your current app, open Rev2.7 and import it. Check your account count and scores, then make a new backup. Keep the old app and original JSON as fallback. Rev2.7 uses separate browser storage and leaves prior storage untouched; use the same new file/path and browser profile afterward. Import is the reliable transfer method across local paths/profiles.
+
+New JSON backups declare `pickupScoreScale: 100`; scored records also carry that marker, including exact-record CSV payloads. New plain CSVs have a Pick Up Score Scale column. Unmarked legacy scores are interpreted as 1–10; include the marker when preparing new 1–100 enrichments, especially scores of 1–10. New-scale backups belong in Rev2.7, not older apps. JSON is the exact recovery format; CSV remains interchange and cannot recover settings or the cleanup ledger.
+
+Historical notes and submitted request snapshots retain their original evidence and score scale; new snapshots include the scale marker. Timers, recommendations, lifecycle, requests and verified resolution receipts are not re-scored or changed. Pre-upgrade pending cleanup receipts may need a fresh verification against a new backup because active ranking records have changed; the app never bypasses receipt hashes.
+
+[Rev2.7 release notes and verification](docs/Pick_Up_Rev2.7_Release_Notes.md)
+
+Previous releases preserved below.
 
 [Download Pick Up Rev2.6](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.6/Pick_Up_Rev2.6_2026-10-28.html)
 
