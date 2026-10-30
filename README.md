@@ -1,6 +1,12 @@
 # Pick Up App (formerly Days Remaining)
 
-Current release: [Rev2.7 — Pick Up App](Pick_Up_Rev2.7_2026-10-29.html)
+Current saved version: [Rev2.8 — Pick Up App](Pick_Up_Rev2.8_2026-10-30.html)
+
+Rev2.8 adds four 1–10 product scores and an independent overall 1–100 score, grades, confidence and retained evaluation summaries. Legacy scores remain separate, not automatically converted into new overall rankings. [Rev2.8 release notes](docs/Pick_Up_Rev2.8_Release_Notes.md) · [independent review and known issues](docs/Pick_Up_Rev2.8_Review_2026-10-30.md).
+
+Rev2.8 source is saved in GitHub; the latest separately published release asset is still Rev2.7. Keep older app files and an exact JSON backup. Do not use an old backup to overwrite newer live edits.
+
+Previous release: [Rev2.7 — Pick Up App](Pick_Up_Rev2.7_2026-10-29.html)
 
 [Download Pick Up Rev2.7](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.7/Pick_Up_Rev2.7_2026-10-29.html)
 
