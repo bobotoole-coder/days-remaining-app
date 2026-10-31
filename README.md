@@ -1,10 +1,14 @@
 # Pick Up App (formerly Days Remaining)
 
-Current saved version: [Rev2.8 — Pick Up App](Pick_Up_Rev2.8_2026-10-30.html)
+Current saved version: [Rev2.9 — Pick Up App](Pick_Up_Rev2.9_2026-10-31.html)
 
-Rev2.8 adds four 1–10 product scores and an independent overall 1–100 score, grades, confidence and retained evaluation summaries. Legacy scores remain separate, not automatically converted into new overall rankings. [Rev2.8 release notes](docs/Pick_Up_Rev2.8_Release_Notes.md) · [independent review and known issues](docs/Pick_Up_Rev2.8_Review_2026-10-30.md).
+[Download Rev2.9](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.9/Pick_Up_Rev2.9_2026-10-31.html)
 
-Rev2.8 source is saved in GitHub; the latest separately published release asset is still Rev2.7. Keep older app files and an exact JSON backup. Do not use an old backup to overwrite newer live edits.
+Rev2.9 fixes evaluated counts and filters for saved verdict variants such as `pick up`. Four compact product scores now appear on the overview; expanded details show large, bold scores. Scores, timers, notes, requests and history are not rewritten. [Release notes](docs/Pick_Up_Rev2.9_Release_Notes.md).
+
+**Upgrade:** make a fresh **Backup JSON** in the running app, open Rev2.9, then use **Import CSV/JSON** if the accounts are not already present. Check your totals and make a new backup. Continue using the same new file/path and Chrome profile. The compatible Rev2.8 storage keys are retained, but local-file paths and browser profiles may have separate storage; JSON import is the reliable transfer method. JSON is exact recovery (including settings and ledgers); CSV is interchange with exact account payloads, not a replacement for the full JSON backup. No live browser migration is claimed until verified in the user’s browser.
+
+Previous source preserved: [Rev2.8](Pick_Up_Rev2.8_2026-10-30.html) · [Rev2.8 release notes](docs/Pick_Up_Rev2.8_Release_Notes.md). All earlier releases remain preserved.
 
 Previous release: [Rev2.7 — Pick Up App](Pick_Up_Rev2.7_2026-10-29.html)
 
