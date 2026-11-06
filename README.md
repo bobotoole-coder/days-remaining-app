@@ -1,5 +1,7 @@
 # Pick Up App (formerly Days Remaining)
 
+**[Upgrades & release history — running roadmap](docs/Pick_Up_Upgrades_and_Release_History.md)**
+
 Current saved version: [Rev2.9 — Pick Up App](Pick_Up_Rev2.9_2026-10-31.html)
 
 [Download Rev2.9](https://github.com/bobotoole-coder/days-remaining-app/releases/download/pick-up-rev2.9/Pick_Up_Rev2.9_2026-10-31.html)
