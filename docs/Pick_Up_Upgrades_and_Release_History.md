@@ -15,6 +15,7 @@ Target: next release after Rev2.9 (proposed Rev2.10; not released or scheduled).
 | PU-003 | Class field | Dropdown with **Netcentric**, **Corporate**, **Enterprise**, matching Compass. | Planned | November 6, 2026 |
 | PU-004 | Vertical field | Dropdown using the Compass options transcribed below. | Planned | November 6, 2026 |
 | PU-005 | Taken — another rep, no countdown | Record unavailable ownership separately from business-fit rejection; preserve the evaluation and exclude the account from ready/request lists. | Planned | November 11, 2026 |
+| PU-006 | Requested-date sorting and display | Sort Requested by request date, newest first or oldest first, and display the weekday and full request date on each account. | Planned | November 11, 2026 |
 
 ### PU-001 — AS#
 
@@ -66,6 +67,15 @@ Compass choices from Bob's supplied screenshot, in displayed order:
 - Carry the status and ownership evidence through supported backup/import/export and reconciliation handoffs; represent the observed ownership as TAKEN rather than inferring a REJECT business verdict. Saving locally must not imply that Supabase was updated.
 - Retain the existing separate countdown workflow for another-rep accounts with an explicitly supplied Days Remaining value.
 - Bob's interim workaround is a dated TAKEN note followed by REJECT on Save. Any later migration must preserve that note and history and distinguish these ownership-only removals from genuine business rejections; do not automatically reinterpret all rejected records.
+
+### PU-006 — Requested-date sorting and display
+
+- Add **Request date — newest first** and **Request date — oldest first** sorting in Requested.
+- Use the recorded submission date of the current request attempt, not the account's Date added, evaluation date or last edit date.
+- Display the weekday and full request date clearly on each requested account, without requiring Request history to be expanded.
+- Preserve earlier attempts and their dates in Request history. Do not overwrite historical request snapshots.
+- Requests without a recorded submission date must display **Unknown — not recorded**, remain accessible, and sort after dated requests in both directions. Never infer a submission date from Date added.
+- Preserve request dates and sorting compatibility through supported backup/import/export paths; this is a planned UI upgrade, not a change to account lifecycle or existing submission history.
 
 ## How we maintain this document
 
