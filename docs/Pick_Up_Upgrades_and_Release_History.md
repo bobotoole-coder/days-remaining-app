@@ -1,6 +1,6 @@
 # Pick Up App — Upgrades & Release History
 
-Last updated: November 6, 2026
+Last updated: November 11, 2026
 
 **Current released app: Rev2.9.** This is the running feature-request and revision-change document. Planned items below are not implemented. Documentation updates do not create an app release.
 
@@ -14,6 +14,7 @@ Target: next release after Rev2.9 (proposed Rev2.10; not released or scheduled).
 | PU-002 | AS Rank score | Add an editable whole-number **1–10** score alongside WAVE, IP Transit / DIA, IPv4 leases and Colocation. | Planned | November 6, 2026 |
 | PU-003 | Class field | Dropdown with **Netcentric**, **Corporate**, **Enterprise**, matching Compass. | Planned | November 6, 2026 |
 | PU-004 | Vertical field | Dropdown using the Compass options transcribed below. | Planned | November 6, 2026 |
+| PU-005 | Taken — another rep, no countdown | Record unavailable ownership separately from business-fit rejection; preserve the evaluation and exclude the account from ready/request lists. | Planned | November 11, 2026 |
 
 ### PU-001 — AS#
 
@@ -55,6 +56,16 @@ Compass choices from Bob's supplied screenshot, in displayed order:
 - Gaming / Gambling
 - Social Networking
 - Other
+
+### PU-005 — Taken — another rep, no countdown
+
+- Allow an active account awaiting evaluation or ready for review to be marked **Taken — another rep, no countdown** after Bob checks Compass, without requiring a prior pickup request.
+- Record the owning rep, the date checked and notes. No countdown displayed means no known countdown; do not substitute zero, invent a timer or restart the normal DR countdown.
+- Preserve the existing evaluation/recommendation, scores, notes and request history. Taken is an ownership/availability status, not a business-fit rejection or a manager-denied pickup request.
+- Exclude Taken accounts from ready/available and request-selection lists, and report them separately from business rejections in counts and analytics.
+- Carry the status and ownership evidence through supported backup/import/export and reconciliation handoffs; represent the observed ownership as TAKEN rather than inferring a REJECT business verdict. Saving locally must not imply that Supabase was updated.
+- Retain the existing separate countdown workflow for another-rep accounts with an explicitly supplied Days Remaining value.
+- Bob's interim workaround is a dated TAKEN note followed by REJECT on Save. Any later migration must preserve that note and history and distinguish these ownership-only removals from genuine business rejections; do not automatically reinterpret all rejected records.
 
 ## How we maintain this document
 
