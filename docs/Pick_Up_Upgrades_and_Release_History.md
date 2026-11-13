@@ -1,6 +1,6 @@
 # Pick Up App — Upgrades & Release History
 
-Last updated: November 11, 2026
+Last updated: November 13, 2026
 
 **Current released app: Rev2.9.** This is the running feature-request and revision-change document. Planned items below are not implemented. Documentation updates do not create an app release.
 
@@ -16,6 +16,7 @@ Target: next release after Rev2.9 (proposed Rev2.10; not released or scheduled).
 | PU-004 | Vertical field | Dropdown using the Compass options transcribed below. | Planned | November 6, 2026 |
 | PU-005 | Taken — another rep, no countdown | Record unavailable ownership separately from business-fit rejection; preserve the evaluation and exclude the account from ready/request lists. | Planned | November 11, 2026 |
 | PU-006 | Requested-date sorting and display | Sort Requested by request date, newest first or oldest first, and display the weekday and full request date on each account. | Planned | November 11, 2026 |
+| PU-007 | Clear Archive confirmation and backup-for-cleanup wording | Remind Bob to save explanatory notes; explain local Archive versus verified Supabase updates/removal; clarify that the cleanup-preparation button downloads the normal JSON backup. | Planned | November 13, 2026 |
 
 ### PU-001 — AS#
 
@@ -66,7 +67,7 @@ Compass choices from Bob's supplied screenshot, in displayed order:
 - Exclude Taken accounts from ready/available and request-selection lists, and report them separately from business rejections in counts and analytics.
 - Carry the status and ownership evidence through supported backup/import/export and reconciliation handoffs; represent the observed ownership as TAKEN rather than inferring a REJECT business verdict. Saving locally must not imply that Supabase was updated.
 - Retain the existing separate countdown workflow for another-rep accounts with an explicitly supplied Days Remaining value.
-- Bob's interim workaround is a dated TAKEN note followed by REJECT on Save. Any later migration must preserve that note and history and distinguish these ownership-only removals from genuine business rejections; do not automatically reinterpret all rejected records.
+- Updated interim guidance (November 13): save a dated TAKEN note, leave the commercial evaluation unchanged, then use local **Archive**. This supersedes the earlier REJECT-on-Save workaround. Preserve notes/history for any records already saved using the earlier workaround, and distinguish ownership-only removals from genuine business rejections; do not automatically reinterpret all rejected records.
 
 ### PU-006 — Requested-date sorting and display
 
@@ -76,6 +77,30 @@ Compass choices from Bob's supplied screenshot, in displayed order:
 - Preserve earlier attempts and their dates in Request history. Do not overwrite historical request snapshots.
 - Requests without a recorded submission date must display **Unknown — not recorded**, remain accessible, and sort after dated requests in both directions. Never infer a submission date from Date added.
 - Preserve request dates and sorting compatibility through supported backup/import/export paths; this is a planned UI upgrade, not a change to account lifecycle or existing submission history.
+
+### PU-007 — Clear Archive confirmation and backup-for-cleanup wording
+
+- This GitHub roadmap is the authoritative development backlog for the next revision. The separate Drive **Pick Up App** document is the plain-English operating guide, not a replacement for this backlog.
+- Current wording makes **Prepare Supabase cleanup** sound like an extra task Bob has missed. In Rev2.9, that button calls the normal JSON backup export; the offline app does not connect to Supabase. Bob can send the normal **Backup JSON** without using both buttons.
+- Remind Bob to save an explanatory note before archiving. Do not imply that unsaved editor text is automatically captured by Archive.
+- Proposed confirmation text:
+
+  > Have you saved a note explaining why you are archiving this company?
+  >
+  > Archive puts this company aside in the app. It does not delete it or update Supabase.
+  >
+  > Send Spock your latest Backup JSON as usual. On the next update, Spock will review the reason, update the appropriate Supabase status or separate classification, and verify the retained information. For confirmed eligible removals, Spock will return a cleanup JSON. The full record leaves the app when you import that file.
+  >
+  > Archive this company now?
+
+- Include concise example notes in nearby help or the confirmation, using placeholders rather than actual customer/rep data:
+  - **TAKEN — [rep] owns this company; converted to an Account. No countdown shown. Checked [date].**
+  - **FINAL REJECT — I agree with the evaluation and decline this company because [reason]. Confirmed [date].**
+  - **ASSIGNED TO ME — Assignment confirmed [date]. Now working as a prospect.**
+  - **REGIONAL EXCLUSION — Verified company headquarters in [country/region]. Not a commercial rejection; retain for reconsideration if rules change. Checked [date].**
+- Preserve the normal structured final-rejection and assignment controls. Example notes do not replace those controls or turn Archive into an automatic final disposition. Temporary archives and recommendation-only rejects remain unresolved. Regional exclusions remain distinct from REJECT and TAKEN and require supported classification and verified retention before removal.
+- Rename **Prepare Supabase cleanup** to a clearer label, such as **Download backup for Spock**, or consolidate it with **Backup JSON** without losing the backup function. Suggested help: **Send this backup to Spock for database updates and any verified cleanup. Import the returned JSON. No separate Supabase task is needed.** Final label/layout can be settled during implementation.
+- Acceptance: operator wording clearly distinguishes saving notes, local archiving, sending a backup, verified database processing and importing cleanup. No automatic database connection, deletion, countdown reset, evaluation/status rewrite or bypass of existing cleanup verification is introduced. Preserve records, settings, timers, request history and ledgers. This item is planned wording/help work, not an app release or authorization to perform cleanup now.
 
 ## How we maintain this document
 
