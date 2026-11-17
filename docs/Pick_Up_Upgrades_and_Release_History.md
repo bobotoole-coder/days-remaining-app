@@ -1,6 +1,6 @@
 # Pick Up App — Upgrades & Release History
 
-Last updated: November 13, 2026
+Last updated: November 17, 2026
 
 **Current released app: Rev2.9.** This is the running feature-request and revision-change document. Planned items below are not implemented. Documentation updates do not create an app release.
 
@@ -17,6 +17,8 @@ Target: next release after Rev2.9 (proposed Rev2.10; not released or scheduled).
 | PU-005 | Taken — another rep, no countdown | Record unavailable ownership separately from business-fit rejection; preserve the evaluation and exclude the account from ready/request lists. | Planned | November 11, 2026 |
 | PU-006 | Requested-date sorting and display | Sort Requested by request date, newest first or oldest first, and display the weekday and full request date on each account. | Planned | November 11, 2026 |
 | PU-007 | Clear Archive confirmation and backup-for-cleanup wording | Remind Bob to save explanatory notes; explain local Archive versus verified Supabase updates/removal; clarify that the cleanup-preparation button downloads the normal JSON backup. | Planned | November 13, 2026 |
+
+| PU-008 | Lead source and source-success analytics | Original lead-source dropdown, conditional Other note, Supabase storage and source-based results reporting. | Planned | November 17, 2026 |
 
 ### PU-001 — AS#
 
@@ -101,6 +103,16 @@ Compass choices from Bob's supplied screenshot, in displayed order:
 - Preserve the normal structured final-rejection and assignment controls. Example notes do not replace those controls or turn Archive into an automatic final disposition. Temporary archives and recommendation-only rejects remain unresolved. Regional exclusions remain distinct from REJECT and TAKEN and require supported classification and verified retention before removal.
 - Rename **Prepare Supabase cleanup** to a clearer label, such as **Download backup for Spock**, or consolidate it with **Backup JSON** without losing the backup function. Suggested help: **Send this backup to Spock for database updates and any verified cleanup. Import the returned JSON. No separate Supabase task is needed.** Final label/layout can be settled during implementation.
 - Acceptance: operator wording clearly distinguishes saving notes, local archiving, sending a backup, verified database processing and importing cleanup. No automatic database connection, deletion, countdown reset, evaluation/status rewrite or bypass of existing cleanup verification is introduced. Preserve records, settings, timers, request history and ledgers. This item is planned wording/help work, not an app release or authorization to perform cleanup now.
+
+### PU-008 — Lead source and source-success analytics
+
+- Add **Lead source** to the account editor: **AS Prospector App**, **ASRank App**, **GroJo**, **CNDC — Carrier Neutral Data Centers**, **PeeringDB**, **Apollo**, **AI/prompt research**, **Referral**, **Manual research**, **Other**. Unknown/unrecorded remains blank. Treat GroJo as the operator label for Growjo discovery, not a model/provider name.
+- Selecting **Other** reveals an adjacent **Other source — describe** text field. Require meaningful text on a new explicit Other selection; retain existing saved text when switching choices, but use it for attribution only with Other. Keep account notes separate.
+- Store in Supabase `public.prospects.lead_source` and `lead_source_other`. `CNDC` is the stable stored value for the expanded CNDC label. The additive database fields can ship before the app UI; their presence does not mean this app feature has released.
+- Original lead discovery is separate from import/provenance (`source_method`, source run/batch, model, dates). A later Compass/CSV/JSON import must not overwrite original attribution. Preserve historical unknowns; do not automatically reconstruct or backfill them. Changes must be deliberate and recorded, not silently inferred from the last importer.
+- Carry both fields through account editing, backup/import/export, reconciliation, history and future database integration. Preserve older backups, unknown fields, all timers, evaluations and request snapshots. Current offline Rev2.9 does not connect directly to Supabase.
+- Reporting: counts and conversion rates by lead source for screened, available, requested, assigned, won and activated accounts, with booked/activated MRC where supported. Show denominators and unknown-source rows; distinguish business-fit rejection from another-rep ownership. Attribute outcomes through stable account/run links without counting repeated imports or repeat requests as new leads.
+- Acceptance: selecting Other toggles the adjacent field; known choices and blank values round-trip; later imports preserve attribution; source totals reconcile to distinct accounts and source-linked outcomes. No app release, unsupported historical demand or automatic database write is implied by this planned item.
 
 ## How we maintain this document
 
