@@ -17,7 +17,6 @@ Target: next release after Rev2.9 (proposed Rev2.10; not released or scheduled).
 | PU-005 | Taken — another rep, no countdown | Record unavailable ownership separately from business-fit rejection; preserve the evaluation and exclude the account from ready/request lists. | Planned | November 11, 2026 |
 | PU-006 | Requested-date sorting and display | Sort Requested by request date, newest first or oldest first, and display the weekday and full request date on each account. | Planned | November 11, 2026 |
 | PU-007 | Clear Archive confirmation and backup-for-cleanup wording | Remind Bob to save explanatory notes; explain local Archive versus verified Supabase updates/removal; clarify that the cleanup-preparation button downloads the normal JSON backup. | Planned | November 13, 2026 |
-
 | PU-008 | Lead source and source-success analytics | Original lead-source dropdown, conditional Other note, Supabase storage and source-based results reporting. | Planned | November 17, 2026 |
 
 ### PU-001 — AS#
